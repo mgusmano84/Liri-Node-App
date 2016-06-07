@@ -35,20 +35,7 @@ function startApp(first, second){
 	}
 }
 
-switch(action){
-    case 'total':
-        total();
-        break;
-    case 'deposit':
-        deposit();
-        break;
-    case 'withdraw':
-        withdraw();
-        break;
-    case 'lotto':
-        lotto();
-        break;
-}
+
 
 
 function myTweets(){
@@ -69,6 +56,61 @@ function myTweets(){
 		}
 	});	
 
+}
+
+function movieThis(){
+	movieName= "";
+	var nodes = process.argv;
+
+	//This loops through the movies typed in
+	for (var i=3; i<nodes.length; i++){
+
+   	 	if (i>3 && i< nodes.length){
+
+        movieName = movieName + "+" + nodes[i];
+
+   		 }
+
+    	else {
+
+        movieName = movieName + nodes[i];
+    	}
+	}
+
+	// Then run a request to the OMDB API with the movie specified 
+	var queryUrl = 'http://www.omdbapi.com/?t=' + movieName +'&y=&plot=short&tomatoes=true&r=json';
+
+
+	request(queryUrl, function (error, response, body) {
+
+    	// If the request is successful (i.e. if the response status code is 200)
+    	if (!error && response.statusCode == 200) {
+
+    		// if (movieName= "") {
+      //   	console.log("mr nobody")
+      //   }
+
+        
+
+        // Parse the body of the site and recover just the imdbRating
+        // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it). 
+        console.log("Title: " + JSON.parse(body)["Title"]);
+        console.log("Released: " + JSON.parse(body)["Year"]);
+        console.log("IMDB Rating: " + JSON.parse(body)["imdbRating"]);
+        console.log("Country: " + JSON.parse(body)["Country"]);
+        console.log("Plot: " + JSON.parse(body)["Plot"]);
+        console.log("Actors: " + JSON.parse(body)["Actors"]);
+        console.log("Rotton Tomatoes URL: " + JSON.parse(body)["tomatoURL"]);
+
+       	fs.appendFile("./log.txt",' \nTitle: '+ JSON.parse(body)["Title"] + ' \nYear: ' + JSON.parse(body)["Year"]  + ' \nIMBD Rating: ' + JSON.parse(body)["imdbRating"] + ' \nCountry: ' + JSON.parse(body)["Country"] + ' \nPlot: '+ JSON.parse(body)["Plot"] + ' \nActors: ' + JSON.parse(body)["Actors"] + ' \nRotten Tomatoes URL: '+ JSON.parse(body)["tomatoURL"], function(err) {
+	    		if(err) {
+	       	 			return console.log(err);
+	    		} 
+			});
+
+        
+    	}
+	});
 }
 
 
