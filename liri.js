@@ -21,7 +21,33 @@ function startApp(first, second){
 		case 'my-tweets':
 		//calls twitter
 			myTweets();
+			break;
+    	case 'movie-this':
+    	//calls the movie slection
+        	movieThis();
+        	break;
+    	case 'spotify-this-song':
+       	 	withdraw();
+        	break;
+    	case 'do-what-it-says':
+        	lotto();
+        	break;
 	}
+}
+
+switch(action){
+    case 'total':
+        total();
+        break;
+    case 'deposit':
+        deposit();
+        break;
+    case 'withdraw':
+        withdraw();
+        break;
+    case 'lotto':
+        lotto();
+        break;
 }
 
 
@@ -29,7 +55,7 @@ function myTweets(){
 
 	var Twitter = require('twitter');
 	var client = new Twitter(keyT);
-	client.get('statuses/user_timeline', {screen_name: 'pragatigusmano', count: 20}, function(error, tweets, response) {
+	client.get('statuses/user_timeline', {screen_name: 'gusmano84', count: 20}, function(error, tweets, response) {
 	
 		for (var prop in tweets) {
   			console.log(tweets[prop].text);
