@@ -19,7 +19,7 @@ function startApp(first, second){
         	movieThis();
         	break;
     	case 'spotify-this-song':
-       	 	withdraw();
+       	 	spotThis();
         	break;
     	case 'do-what-it-says':
         	lotto();
@@ -104,6 +104,10 @@ function movieThis(){
         
     	}
 	});
+}
+
+function spotThis (){
+	var spotify = require('spotify');
 }
 
 
