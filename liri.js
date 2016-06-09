@@ -108,6 +108,19 @@ function movieThis(){
 
 function spotThis (){
 	var spotify = require('spotify');
+
+		var spot = second || "what's my age again";
+spotify.search({ type: 'track', query: spot }, function(err, data) {
+    if ( err ) {
+        console.log('Error occurred: ' + err);
+        return;
+    } else {
+    	console.log('Artist(s): ' + data.tracks.items[0].artists[0].name)
+        console.log('Song Name: ' + data.tracks.items[0].name);
+        console.log('Preview Link: ' + data.tracks.items[0].preview_url);
+        console.log('Album: ' + data.tracks.items[0].album.name);
+    }
+ });
 }
 
 
