@@ -104,16 +104,22 @@ function spotThis (){
 
 	var spot = second || "what's my age again";
 	spotify.search({ type: 'track', query: spot }, function(err, data) {
-    if ( err ) {
+    	if ( err ) {
         console.log('Error occurred: ' + err);
         return;
-    } else {
+    	} else {
     	console.log('Artist(s): ' + data.tracks.items[0].artists[0].name)
         console.log('Song Name: ' + data.tracks.items[0].name);
         console.log('Preview Link: ' + data.tracks.items[0].preview_url);
         console.log('Album: ' + data.tracks.items[0].album.name);
-    }
- });
+   		}
+
+   		fs.appendFile("./log.txt",'\nArtist: '+ data.tracks.items[0].artists[0].name + ' \nSong Name: ' + data.tracks.items[0].name  + ' \nPreview Link: ' + data.tracks.items[0].preview_url + '\nAlbum: ' + data.tracks.items[0].album.name, function(err) {
+	    		if(err) {
+	       	 		return console.log(err);
+	    		} 
+		});
+ 	});
 }
 
 // Do What It Says Function
