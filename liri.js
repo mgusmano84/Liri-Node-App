@@ -29,7 +29,7 @@ function startApp(first, second){
 
 
 
-
+//Twitter function
 function myTweets(){
 
 	var Twitter = require('twitter');
@@ -51,9 +51,11 @@ function myTweets(){
 
 }
 
+//OMDB movie function
 function movieThis(){
 	movieName= "";
 	var nodes = process.argv;
+
 
 	//This loops through the movies typed in
 	for (var i=3; i<nodes.length; i++){
@@ -68,7 +70,13 @@ function movieThis(){
 
         movieName = movieName + nodes[i];
     	}
+
 	}
+	// If no input for nodes then Movie will auto select to Mr Nobody
+	if (movieName === "") {
+  			movieName = "Mr. Nobody";
+	
+  		}
 
 	// Run Request to OMDB API with movie name
 	var queryUrl = 'http://www.omdbapi.com/?t=' + movieName +'&y=&plot=short&tomatoes=true&r=json';
@@ -100,8 +108,6 @@ function movieThis(){
 	       	 			return console.log(err);
 	    		} 
 			});
-
-        
     	}
 	});
 }
