@@ -56,7 +56,6 @@ function movieThis(){
 	movieName= "";
 	var nodes = process.argv;
 
-
 	//This loops through the movies typed in
 	for (var i=3; i<nodes.length; i++){
 
@@ -81,17 +80,9 @@ function movieThis(){
 	// Run Request to OMDB API with movie name
 	var queryUrl = 'http://www.omdbapi.com/?t=' + movieName +'&y=&plot=short&tomatoes=true&r=json';
 
-
 	request(queryUrl, function (error, response, body) {
 
-    	
     	if (!error && response.statusCode == 200) {
-
-    		// if (movieName= "") {
-      //   	console.log("mr nobody")
-      //   }
-
-        
 
       	//Parse through IMBD data and console long the below objects
         console.log("Title: " + JSON.parse(body)["Title"]);
@@ -112,11 +103,12 @@ function movieThis(){
 	});
 }
 
+//Spotify function
 function spotThis (){
 	var spotify = require('spotify');
 
-		var spot = second || "what's my age again";
-spotify.search({ type: 'track', query: spot }, function(err, data) {
+	var spot = second || "what's my age again";
+	spotify.search({ type: 'track', query: spot }, function(err, data) {
     if ( err ) {
         console.log('Error occurred: ' + err);
         return;
