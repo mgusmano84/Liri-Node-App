@@ -41,7 +41,7 @@ function myTweets(){
   			console.log(tweets[prop].text);
    			console.log(tweets[prop].created_at);
 	
-			fs.appendFile("./log.txt", tweets[prop].text + ' \n' + tweets[prop].created_at  + ' \n', function(err) {
+			fs.appendFile("./log.txt",'\nMy Tweets: ' + tweets[prop].text + ' \n' + tweets[prop].created_at  + ' \n***********************************************', function(err) {
 	    		if(err) {
 	       	 			return console.log(err);
 	    		} 
@@ -89,7 +89,7 @@ function movieThis(){
         console.log("Rotton Tomatoes URL: " + JSON.parse(body)["tomatoURL"]);
 
         //store the returns in log.txt
-       	fs.appendFile("./log.txt",' \nTitle: '+ JSON.parse(body)["Title"] + ' \nYear: ' + JSON.parse(body)["Year"]  + ' \nIMBD Rating: ' + JSON.parse(body)["imdbRating"] + ' \nCountry: ' + JSON.parse(body)["Country"] + ' \nPlot: '+ JSON.parse(body)["Plot"] + ' \nActors: ' + JSON.parse(body)["Actors"] + ' \nRotten Tomatoes URL: '+ JSON.parse(body)["tomatoURL"], function(err) {
+       	fs.appendFile("./log.txt",'\nOMBD Movie' + '\nTitle: '+ JSON.parse(body)["Title"] + ' \nYear: ' + JSON.parse(body)["Year"]  + ' \nIMBD Rating: ' + JSON.parse(body)["imdbRating"] + ' \nCountry: ' + JSON.parse(body)["Country"] + ' \nPlot: '+ JSON.parse(body)["Plot"] + ' \nActors: ' + JSON.parse(body)["Actors"] + ' \nRotten Tomatoes URL: '+ JSON.parse(body)["tomatoURL"] + '\n***********************************************', function(err) {
 	    		if(err) {
 	       	 			return console.log(err);
 	    		} 
@@ -114,7 +114,7 @@ function spotThis (){
         console.log('Album: ' + data.tracks.items[0].album.name);
    		}
 
-   		fs.appendFile("./log.txt",'\nArtist: '+ data.tracks.items[0].artists[0].name + ' \nSong Name: ' + data.tracks.items[0].name  + ' \nPreview Link: ' + data.tracks.items[0].preview_url + '\nAlbum: ' + data.tracks.items[0].album.name, function(err) {
+   		fs.appendFile("./log.txt",'\nSpotify' + '\nArtist: '+ data.tracks.items[0].artists[0].name + ' \nSong Name: ' + data.tracks.items[0].name  + ' \nPreview Link: ' + data.tracks.items[0].preview_url + '\nAlbum: ' + data.tracks.items[0].album.name + '\n***********************************************', function(err) {
 	    		if(err) {
 	       	 		return console.log(err);
 	    		} 
