@@ -22,7 +22,7 @@ function startApp(first, second){
        	 	spotThis();
         	break;
     	case 'do-what-it-says':
-        	lotto();
+        	doWhatItSays();
         	break;
 	}
 }
@@ -48,7 +48,6 @@ function myTweets(){
 			});
 		}
 	});	
-
 }
 
 //OMDB movie function
@@ -62,19 +61,15 @@ function movieThis(){
    	 	if (i>3 && i< nodes.length){
 
         movieName = movieName + "+" + nodes[i];
-
    		 }
-
     	else {
 
         movieName = movieName + nodes[i];
     	}
-
 	}
 	// If no input for nodes then Movie will auto select to Mr Nobody
 	if (movieName === "") {
   			movieName = "Mr. Nobody";
-	
   		}
 
 	// Run Request to OMDB API with movie name
@@ -121,7 +116,24 @@ function spotThis (){
  });
 }
 
+// Do What It Says Function
+function doWhatItSays () {
+	fs.readFile('./random.txt', 'utf8', function (err,data) {
+  		
+  		//make an array of the data
+  		var dataSplit = data.split(',');
+  		console.log(dataSplit)
 
+  		//input the results so that startApp can read it
+  		first = dataSplit[0];
+  		second = dataSplit[1];
+  		startApp(first, second);
+
+  		if (err) {
+    	return console.log(err);
+  		}
+	});
+}
 
 
 
